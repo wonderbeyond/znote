@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+    color: #666;
+}
+
+.notes-grid-container {
+    /* border: 2px dashed #abd8ab; */
+    /* padding: 12px 15px; */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.react-grid-item {
+    /* border: 1px solid #ff98ff; */
+    /* background: #f9bcf8; */
+    color: #333;
+    /* box-shadow: -1px 1px 1px #ccafcb; */
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
