@@ -1,0 +1,26 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "globals": {
+        "require": true,
+        "document": true,
+        "setTimeout": true,
+        "console": true
+    },
+    "rules": {
+        "semi": 2,
+        "no-console": 1,
+        "no-unused-vars": 1,
+        "react/prop-types": 0
+    }
+}

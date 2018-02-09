@@ -1,0 +1,186 @@
+:root {
+    --note-edge-padding: 10px;
+}
+
+h1.App-title {
+    text-align: center;
+    color: #666;
+}
+
+.notes-grid-container {
+    /* padding: 12px 15px; */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.note-editor-modal {
+}
+
+.note-card,
+.note-editor {
+    color: #333;
+    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    & h1 {
+        margin: var(--note-edge-padding);
+        font-size: 18px;
+        /* color: #111; */
+        font-weight: 500;
+        & input {
+            display: block;
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            line-height: 100%;
+            border: 0;
+            background: transparent;
+        }
+    }
+    & .note-content {
+        /* flex-grow: 10; */
+        overflow: hidden;
+        margin: 5px var(--note-edge-padding) auto var(--note-edge-padding);
+        font-size: 14px;
+        & pre {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    & .label-list {
+        flex-shrink: 0;
+        overflow: hidden;
+        margin: 8px;
+        display: flex;
+        align-items: center;
+        line-height: 2em;
+        font-size: 11px;
+
+        & .label-item {
+            flex-shrink: 0;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 2px;
+            margin: 1px 5px 1px 0;
+            padding: 0 6px;
+
+            position: relative;
+            overflow: hidden;
+
+            & .remove-me {display: none}
+            &:hover .remove-me {
+                display: inline-block;
+                position: absolute;
+                right: -18px;
+                top: -18px;
+
+                height: 36px;
+                width: 36px;
+                line-height: 0;
+                border-radius: 50%;
+                box-shadow: -1px 0 1px #f59090;
+                background-color: #f56060ee;
+                & .x {
+                    color: #ccc;
+                    display: inline-block;
+                    text-align: center;
+                    width: 50%;
+                    height: 50%;
+                    padding: 0 0 4px 4px;
+                    font-size: 14px;  /* 36px/2 - 4px */
+                    line-height: 1em;
+                    &:hover {
+                        color: #fff;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        & .new-label input {
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            border: 0;
+            line-height: inherit;
+            width: 8em;
+            background: transparent;
+            &::placeholder {
+                font-style: italic;
+                font-weight: 200;
+            }
+        }
+    }
+}
+
+.note-card::before {
+    opacity: 0; visibility: hidden;
+    position: absolute;
+    content: "🐕";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6em;
+    color: #f0f0f0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    transition: all 400ms ease;
+}
+.note-card.editing::before {
+    opacity: 1; visibility: visible;
+    transition: all 400ms ease;
+}
+
+.note-editor {
+    & .content-editor {
+        margin: 0 0 auto 0;
+        flex-grow: 10;
+        background-color: rgba(255, 255, 255, 0.6);
+
+        & .CodeMirror {
+            height: auto;
+
+            /*
+            Assume using mdn-like theme, do some overrides.
+            */
+            padding: 10px 6px;  /* .CodeMirror-line's padding-left is 4px */
+            background-color: rgba(0, 0, 0, 0);
+            color: #666;
+            font-size: 13px;
+            line-height: 1.25;
+            & .CodeMirror-lines {
+            }
+            & .CodeMirror-line {
+            }
+
+            & .CodeMirror-scroll {
+                /*
+                See https://stackoverflow.com/questions/30098071/codemirror-autoresize-upto-a-given-number-of-lines
+                */
+                min-height: 300px;
+                max-height: 600px;
+            }
+        }
+    }
+
+    & .label-list {
+        flex-wrap: wrap;
+        & .label-item  {
+        }
+    }
+}
+
+.transition-enter .note-editor-modal {
+  transform: scale(0);
+}
+.transition-enter-active .note-editor-modal {
+  transform: scale(1);
+  transition: transform 200ms ease;
+}
